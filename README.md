@@ -1,2 +1,3 @@
 # Veteran-Visual-Novel
-Videogame visual novel yang dibuat menggunakan Java.
+Videogame visual novel.
+Dibuat menggunakan bahasa pemrograman Java.
