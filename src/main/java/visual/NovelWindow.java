@@ -2,6 +2,10 @@ package main.java.visual;
 
 import javax.swing.*;
 
+/**
+ * Objek window GUI yang digunakan program.
+ * (Tidak digunakan dalam build ini)
+ */
 public class NovelWindow extends JFrame {
     public JPanel clickPane;
 

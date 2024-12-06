@@ -1,10 +1,10 @@
-package main.java.character;
+package main.java.actor;
 
-public class Character {
+public class Actor {
   public String name;
     public java.util.Map<String, String> sprites;
 
-    public Character(String name) {
+    public Actor(String name) {
         this.name = name;
         this.sprites = new java.util.HashMap<>();
     }

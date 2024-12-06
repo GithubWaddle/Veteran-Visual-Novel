@@ -4,6 +4,9 @@ import main.java.input.ClickListener;
 import main.java.scene.ScenePlayer;
 import main.java.visual.NovelWindow;
 
+/**
+ * Tempat jalan program.
+ */
 public class Main {
     public static void main(String[] args) {
         /*
@@ -14,15 +17,16 @@ public class Main {
         Do: Jalankan ScenePlayer
          */
 
-        NovelWindow novelWindow = new NovelWindow();
-        novelWindow.setVisible(true);
+        // NovelWindow novelWindow = new NovelWindow();
+        // novelWindow.setVisible(true);
 
-        ScenePlayer scenePlayer = new ScenePlayer();
+        ScenePlayer scenePlayer = new ScenePlayer(Configuration.STARTING_SCENE);
+        /*
         ClickListener clickListener = new ClickListener(
                 novelWindow.clickPane,
                 scenePlayer
         );
-        //scenePlayer.scene = Configuration.STARTING_SCENE
-        //scenePlayer.play();
+        */
+        scenePlayer.play();
     }
 }
