@@ -1,14 +1,19 @@
 package main.java.scene;
 
+import main.java.scene.events.SceneEvent;
+
 import java.util.List;
 
+/**
+ * Representasi scene
+ */
 public class Scene {
     private String name;          // Nama scene
     private String background;    // Path gambar latar belakang
-    private List<String> events;  // Daftar event dalam scene
+    private List<SceneEvent> events;  // Daftar event dalam scene
 
     // Konstruktor
-    public Scene(String name, String background, List<String> events) {
+    public Scene(String name, String background, List<SceneEvent> events) {
         this.name = name;
         this.background = background;
         this.events = events;
@@ -31,11 +36,11 @@ public class Scene {
         this.background = background;
     }
 
-    public List<String> getEvents() {
+    public List<SceneEvent> getEvents() {
         return events;
     }
 
-    public void setEvents(List<String> events) {
+    public void setEvents(List<SceneEvent> events) {
         this.events = events;
     }
 
@@ -43,7 +48,7 @@ public class Scene {
     public String getContent() {
         StringBuilder content = new StringBuilder();
         content.append("Background: ").append(background).append("\n");
-        for (String event : events) {
+        for (SceneEvent event : events) {
             content.append(event).append("\n");
         }
         return content.toString();
