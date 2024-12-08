@@ -1,9 +1,6 @@
 package main.java.actor;
 
-import main.java.scene.Scene;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class DefinedActors {
   private static List<Actor> actors = new ArrayList<>();
@@ -11,17 +8,20 @@ public class DefinedActors {
   static {
     actors.add(
             new Actor(
-                    "Character A"
+                    "Character A",
+                    new HashMap<>()
             )
     );
     actors.add(
             new Actor(
-                    "Character B"
+                    "Character B",
+                    new HashMap<>()
             )
     );
     actors.add(
             new Actor(
-                    "Character C"
+                    "Character C",
+                    new HashMap<>()
             )
     );
   }
