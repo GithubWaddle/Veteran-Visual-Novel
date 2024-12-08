@@ -72,13 +72,13 @@ public class DefinedScenes {
                                 "I liek banna",
                                 DefinedActors.getActorByName("Character B")
                         ),
-                        new SceneEventJump(9),
+                        new SceneEventJump(10),
                         //CHOICE:Apple
                         new SceneEventDialog(
                                 "I liek appel",
                                 DefinedActors.getActorByName("Character B")
                         ),
-                        new SceneEventJump(9),
+                        new SceneEventJump(10),
                         //CHOICE:Meowmeowmeowmeoww...
                         new SceneEventDialog(
                                 "Meowmeowmeowmeoww...",

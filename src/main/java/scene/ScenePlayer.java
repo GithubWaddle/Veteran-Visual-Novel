@@ -1,12 +1,14 @@
 package main.java.scene;
 
 import main.java.scene.events.SceneEvent;
+import main.java.visual.NovelWindow;
 
 /**
  * Pemain suatu Scene.
  */
 public class ScenePlayer {
     private Scene scene;
+    private NovelWindow novelWindow;
     private int currentEventIndex;
     private boolean isPlaying = false;
 
@@ -14,8 +16,9 @@ public class ScenePlayer {
      * Konstruktor ScenePlayer
      * @param scene Scene untuk dimainkan.
      */
-    public ScenePlayer(Scene scene) {
+    public ScenePlayer(Scene scene, NovelWindow novelWindow) {
         this.scene = scene;
+        this.novelWindow = novelWindow;
         this.currentEventIndex = 0;
     }
 
@@ -24,7 +27,7 @@ public class ScenePlayer {
      * @param event SceneEvent yang akan dieksekusi.
      */
     public void parseEvent(SceneEvent event) {
-        Thread thread = new Thread(() -> event.execute(this));
+        Thread thread = new Thread(() -> event.execute(this, this.novelWindow));
         thread.start();
         try {
             thread.join();
@@ -45,20 +48,22 @@ public class ScenePlayer {
      * @return Boolean jika ScenePlayer masih bisa menjalankan scene
      */
     public boolean checkIfCanPlay() {
-        return ((this.currentEventIndex < (this.scene.getEvents().size() - 1)) && this.isPlaying);
+        return ((this.currentEventIndex < this.scene.getEvents().size()) && this.isPlaying);
     }
 
     /**
      * Menjalankan ScenePlayer.
      */
     public void play() {
-        this.currentEventIndex = 0;
+        setCurrentEventIndex(0);
         this.isPlaying = true;
 
         while (checkIfCanPlay()) {
             parseCurrentEvent();
             currentEventIndex++;
         }
+
+        System.out.println("Cerita selesai!");
     }
 
     /**
@@ -74,5 +79,10 @@ public class ScenePlayer {
      */
     public void setCurrentEventIndex(int currentEventIndex) {
         this.currentEventIndex = currentEventIndex;
+    }
+
+    public void switchScene(Scene scene) {
+        this.scene = scene;
+        setCurrentEventIndex(0);
     }
 }

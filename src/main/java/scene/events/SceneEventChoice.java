@@ -1,6 +1,7 @@
 package main.java.scene.events;
 
 import main.java.scene.ScenePlayer;
+import main.java.visual.NovelWindow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class SceneEventChoice extends SceneEvent {
     }
 
     @Override
-    public boolean execute(ScenePlayer scenePlayer) {
+    public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow) {
         List<String> orderedChoices = new ArrayList<>(choicesToJumpIndex.keySet());
 
         System.out.println("Pick a choice!");
@@ -35,7 +36,5 @@ public class SceneEventChoice extends SceneEvent {
         }
 
         SceneEventJump.jumpScenePlayer(scenePlayer, choicesToJumpIndex.get(choice));
-
-        return super.execute(scenePlayer);
     }
 }

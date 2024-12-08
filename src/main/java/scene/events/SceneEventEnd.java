@@ -1,12 +1,11 @@
 package main.java.scene.events;
 
 import main.java.scene.ScenePlayer;
-import main.java.visual.DialogBox;
+import main.java.visual.NovelWindow;
 
 public class SceneEventEnd extends SceneEvent {
     @Override
-    public boolean execute(ScenePlayer scenePlayer) {
+    public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow) {
         scenePlayer.stop();
-        return super.execute(scenePlayer);
     }
 }

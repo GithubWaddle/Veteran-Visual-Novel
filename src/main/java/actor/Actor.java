@@ -1,11 +1,17 @@
 package main.java.actor;
 
-public class Actor {
-  public String name;
-    public java.util.Map<String, String> sprites;
+import java.util.Map;
 
-    public Actor(String name) {
+public class Actor {
+    public String name;
+    private Map<String, String> expressionImagePaths;
+
+    public Actor(String name, Map<String, String> expressionImagePaths) {
         this.name = name;
-        this.sprites = new java.util.HashMap<>();
+        this.expressionImagePaths = new java.util.HashMap<>();
+    }
+
+    String getSpritePathByExpression(String expression) {
+        return null;
     }
 }
