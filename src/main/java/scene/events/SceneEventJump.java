@@ -1,6 +1,7 @@
 package main.java.scene.events;
 
 import main.java.scene.ScenePlayer;
+import main.java.visual.NovelWindow;
 
 /**
  * Membuat ScenePlayer lompat ke event tertentu dalam himpunan events Scene.
@@ -13,9 +14,8 @@ public class SceneEventJump extends SceneEvent {
     }
 
     @Override
-    public boolean execute(ScenePlayer scenePlayer) {
+    public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow) {
         jumpScenePlayer(scenePlayer, this.index);
-        return super.execute(scenePlayer);
     }
 
     public static void jumpScenePlayer(ScenePlayer scenePlayer, int index) {

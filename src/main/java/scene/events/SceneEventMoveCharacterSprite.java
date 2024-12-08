@@ -1,10 +1,13 @@
 package main.java.scene.events;
 
 import main.java.scene.ScenePlayer;
+import main.java.visual.NovelWindow;
 
 public class SceneEventMoveCharacterSprite extends SceneEvent {
+    /* add properties here */
+
     @Override
-    public boolean execute(ScenePlayer scenePlayer) {
-        return super.execute(scenePlayer);
+    public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow) {
+        /* implement method */
     }
 }

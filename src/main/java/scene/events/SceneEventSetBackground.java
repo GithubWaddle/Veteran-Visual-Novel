@@ -3,7 +3,7 @@ package main.java.scene.events;
 import main.java.scene.ScenePlayer;
 import main.java.visual.NovelWindow;
 
-public class SceneEventRemoveCharacterSprite extends SceneEvent {
+public class SceneEventSetBackground extends SceneEvent {
     /* add properties here */
 
     @Override

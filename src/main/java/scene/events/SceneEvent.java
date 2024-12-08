@@ -1,9 +1,8 @@
 package main.java.scene.events;
 
 import main.java.scene.ScenePlayer;
+import main.java.visual.NovelWindow;
 
 public abstract class SceneEvent {
-    public boolean execute(ScenePlayer scenePlayer) {
-        return true;
-    };
+    public abstract void execute(ScenePlayer scenePlayer, NovelWindow novelWindow);
 }

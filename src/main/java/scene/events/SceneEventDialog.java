@@ -2,6 +2,7 @@ package main.java.scene.events;
 
 import main.java.actor.Actor;
 import main.java.scene.ScenePlayer;
+import main.java.visual.NovelWindow;
 
 import java.io.IOException;
 
@@ -19,7 +20,7 @@ public class SceneEventDialog extends SceneEvent {
     }
 
     @Override
-    public boolean execute(ScenePlayer scenePlayer) {
+    public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow) {
         if (this.speaker != null) {
             System.out.println(
                     this.speaker.name + ": " + this.text
@@ -37,6 +38,5 @@ public class SceneEventDialog extends SceneEvent {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return super.execute(scenePlayer);
     }
 }
