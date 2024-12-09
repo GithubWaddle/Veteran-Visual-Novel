@@ -20,8 +20,29 @@ public class DefinedActors {
     );
     actors.add(
             new Actor(
-                    "Character C",
-                    new HashMap<>()
+                    "Test:Rectangle",
+                    Map.of(
+                            "default", "images/actorsprite/testactor/rectangle_default.png",
+                            "default_talk", "images/actorsprite/testactor/rectangle_default_talk.png"
+                    )
+            )
+    );
+    actors.add(
+            new Actor(
+                    "Test:Triangle",
+                    Map.of(
+                            "default", "images/actorsprite/testactor/triangle_default.png",
+                            "default_talk", "images/actorsprite/testactor/triangle_default_talk.png"
+                    )
+            )
+    );
+    actors.add(
+            new Actor(
+                    "Test:Circle",
+                    Map.of(
+                            "default", "images/actorsprite/testactor/circle_default.png",
+                            "default_talk", "images/actorsprite/testactor/circle_default_talk.png"
+                    )
             )
     );
   }

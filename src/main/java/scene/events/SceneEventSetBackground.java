@@ -4,10 +4,14 @@ import main.java.scene.ScenePlayer;
 import main.java.visual.NovelWindow;
 
 public class SceneEventSetBackground extends SceneEvent {
-    /* add properties here */
+    private String imagePath;
+
+    public SceneEventSetBackground(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     @Override
-    public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow) {
-        /* implement method */
+    public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow, Runnable onFinish) {
+        novelWindow.setBackground(imagePath, onFinish);
     }
 }

@@ -3,6 +3,8 @@ package main.java.scene;
 import main.java.scene.events.SceneEvent;
 import main.java.visual.NovelWindow;
 
+import java.util.List;
+
 /**
  * Pemain suatu Scene.
  */
@@ -23,27 +25,6 @@ public class ScenePlayer {
     }
 
     /**
-     * Eksekusi suatu SceneEvent
-     * @param event SceneEvent yang akan dieksekusi.
-     */
-    public void parseEvent(SceneEvent event) {
-        Thread thread = new Thread(() -> event.execute(this, this.novelWindow));
-        thread.start();
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
-     * Eksekusi SceneEvent terkini/di indeks currentEventIndex di dalam properti events.
-     */
-    public void parseCurrentEvent() {
-        parseEvent(this.scene.getEvents().get(currentEventIndex));
-    }
-
-    /**
      * Memeriksa jika ScenePlayer masih bisa menjalankan scene
      * @return Boolean jika ScenePlayer masih bisa menjalankan scene
      */
@@ -58,11 +39,27 @@ public class ScenePlayer {
         setCurrentEventIndex(0);
         this.isPlaying = true;
 
-        while (checkIfCanPlay()) {
-            parseCurrentEvent();
-            currentEventIndex++;
-        }
+        ScenePlayer scenePlayer = this;
+        List<SceneEvent> events = scenePlayer.scene.getEvents();
 
+        Runnable nextEvent = new Runnable() {
+            @Override
+            public void run() {
+                if (!checkIfCanPlay()) {
+                    return;
+                }
+
+                SceneEvent event = events.get(scenePlayer.currentEventIndex);
+                scenePlayer.currentEventIndex++;
+                event.execute(
+                        scenePlayer,
+                        novelWindow,
+                        this
+                );
+            }
+        };
+
+        nextEvent.run();
         System.out.println("Cerita selesai!");
     }
 
@@ -79,10 +76,5 @@ public class ScenePlayer {
      */
     public void setCurrentEventIndex(int currentEventIndex) {
         this.currentEventIndex = currentEventIndex;
-    }
-
-    public void switchScene(Scene scene) {
-        this.scene = scene;
-        setCurrentEventIndex(0);
     }
 }

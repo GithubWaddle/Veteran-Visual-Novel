@@ -7,7 +7,7 @@ public class SceneEventSetActorSpriteExpression extends SceneEvent {
     /* add properties here */
 
     @Override
-    public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow) {
+    public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow, Runnable onFinish) {
         /* implement method */
     }
 }

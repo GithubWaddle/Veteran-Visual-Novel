@@ -1,16 +1,16 @@
 package main.java.visual;
 
 import main.java.actor.Actor;
+import main.java.visual.actorsprite.ActorSprites;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 public interface NovelWindowManipulate {
     void dialogBoxTalk(String text, Actor speaker);
     int choiceListAsk(ArrayList<String> choices);
-    void setBackground(String imagePath);
-    void addActorSprite(Actor actor, String expression);
-    void setActorSpriteExpression(Actor actor, String expression);
-    void moveActorSprite(Actor actor, int xPixels, int yPixels);
-    void removeActorSprite(Actor actor);
+    void setBackground(String imagePath, Runnable onComplete);
+    void addActorSprite(Actor actor, String expression, ActorSprites.Position position, Runnable onComplete);
+    void setActorSpriteExpression(Actor actor, String expression, Runnable onComplete);
+    void moveActorSprite(Actor actor, ActorSprites.Position position, int durationMilliseconds, Runnable onComplete);
+    void removeActorSprite(Actor actor, Runnable onComplete);
 }
