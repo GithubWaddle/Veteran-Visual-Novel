@@ -131,6 +131,42 @@ public class DefinedScenes {
                         )
                 )
         ));
+
+        scenes.add(new Scene(
+                "testChoiceList",
+                Arrays.asList(
+                        new SceneEventAddActorSprite(
+                                DefinedActors.getActorByName("Test:Rectangle"),
+                                "default",
+                                ActorSprites.Position.BOTTOM_CENTER
+                        ),
+                        new SceneEventWait(2000),
+                        new SceneEventChoice(
+                                Map.of(
+                                        "Left", 3,
+                                        "Center Left",5,
+                                        "Right",7
+                                )
+                        ),
+                        new SceneEventAddActorSprite(
+                                DefinedActors.getActorByName("Test:Circle"),
+                                "default",
+                                ActorSprites.Position.BOTTOM_LEFT
+                        ),
+                        new SceneEventEnd(),
+                        new SceneEventAddActorSprite(
+                                DefinedActors.getActorByName("Test:Circle"),
+                                "default",
+                                ActorSprites.Position.BOTTOM_CENTER_LEFT
+                        ),
+                        new SceneEventEnd(),
+                        new SceneEventAddActorSprite(
+                                DefinedActors.getActorByName("Test:Circle"),
+                                "default",
+                                ActorSprites.Position.BOTTOM_RIGHT
+                        )
+                )
+        ));
     }
 
     // Mendapatkan scene berdasarkan nama

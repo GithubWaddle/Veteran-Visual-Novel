@@ -7,7 +7,8 @@ import java.util.ArrayList;
 
 public interface NovelWindowManipulate {
     void dialogBoxTalk(String text, Actor speaker);
-    int choiceListAsk(ArrayList<String> choices);
+    void choiceListAsk(ArrayList<String> choices, Runnable onChoicePicked);
+    String getChoicePicked();
     void setBackground(String imagePath, Runnable onComplete);
     void addActorSprite(Actor actor, String expression, ActorSprites.Position position, Runnable onComplete);
     void setActorSpriteExpression(Actor actor, String expression, Runnable onComplete);
