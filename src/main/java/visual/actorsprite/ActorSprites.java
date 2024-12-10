@@ -40,9 +40,8 @@ public class ActorSprites {
 
         this.sprites.put(actor, actorSprite);
 
-        this.actorSpritesPanel.add(actorSprite, JLayeredPane.DEFAULT_LAYER);
+        this.actorSpritesPanel.add(actorSprite);
         this.setActorPosition(actor, position);
-        this.actorSpritesPanel.repaint();
 
         onFinish.run();
     }
@@ -50,7 +49,6 @@ public class ActorSprites {
     public void setActorExpression(Actor actor, String expression, Runnable onFinish) {
         sprites.get(actor).setExpression(expression);
         setActorPosition(actor, actorToPosition.get(actor));
-        actorSpritesPanel.repaint();
         onFinish.run();
     }
 

@@ -10,14 +10,14 @@ public class Background {
     public Background(JPanel backgroundPane) {
         this.backgroundPane = backgroundPane;
         this.backgroundImageLabel = new JLabel();
-        this.backgroundPane.add(this.backgroundImageLabel);
+        this.backgroundPane.add(this.backgroundImageLabel, JLayeredPane.DEFAULT_LAYER);
     }
 
-    public void set(String imageResourcePath) {
-        URL imageURL = getClass().getClassLoader().getResource(imageResourcePath);
-        this.backgroundImageLabel.setIcon(new ImageIcon(imageURL));
-        this.backgroundImageLabel.setBounds(0, 0, this.backgroundImageLabel.getIcon().getIconWidth(), this.backgroundImageLabel.getIcon().getIconHeight());
-        this.backgroundPane.repaint();
+    public void set(String imageResourcePath, Runnable onFinish) {
+        ImageIcon imageIcon = new ImageIcon(getClass().getClassLoader().getResource(imageResourcePath));
+        this.backgroundImageLabel.setIcon(imageIcon);
+        this.backgroundImageLabel.setBounds(0, 0, imageIcon.getIconWidth(), imageIcon.getIconHeight());
+        onFinish.run();
     }
 
 }

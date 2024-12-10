@@ -46,6 +46,7 @@ public class ScenePlayer {
             @Override
             public void run() {
                 if (!checkIfCanPlay()) {
+                    System.out.println("Cerita selesai!");
                     return;
                 }
 
@@ -60,7 +61,6 @@ public class ScenePlayer {
         };
 
         nextEvent.run();
-        System.out.println("Cerita selesai!");
     }
 
     /**
