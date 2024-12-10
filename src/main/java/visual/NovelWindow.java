@@ -2,8 +2,10 @@ package main.java.visual;
 
 import main.java.Configuration;
 import main.java.actor.Actor;
+import main.java.actor.DefinedActors;
 import main.java.visual.actorsprite.ActorSprites;
 import main.java.visual.background.Background;
+import main.java.visual.dialogbox.DialogBox;
 import main.java.visual.choicelist.ChoiceList;
 
 import javax.swing.*;
@@ -15,25 +17,28 @@ import java.util.ArrayList;
  * Digunakan oleh SceneEvent untuk akses output visual (melalu interface NovelWindowManipulate)
  */
 public class NovelWindow extends JFrame implements NovelWindowManipulate {
-    private ActorSprites actorSprites;
     private Background background;
+    private ActorSprites actorSprites;
+    private DialogBox dialogBox;
     private ChoiceList choiceList;
 
     private JLayeredPane novelPane;
     private JPanel backgroundPanel;
     private JPanel actorSpritesPanel;
+    private JPanel dialogBoxPanel;
     private JLayeredPane choiceListPane;
+  
 
     public NovelWindow() {
         super("Veteran Java Visual Novel");
         setSize(Configuration.WINDOW_WIDTH_PIXELS, Configuration.WINDOW_HEIGHT_PIXELS);
         setResizable(false);
 
+        // Initialize layered pane
         this.novelPane = new JLayeredPane();
         this.novelPane.setLayout(null);
         add(this.novelPane);
 
-        // background panel
         this.backgroundPanel = new JPanel();
         this.backgroundPanel.setBounds(0, 0, this.getWidth(), this.getHeight());
         this.backgroundPanel.setLayout(null);
@@ -46,7 +51,9 @@ public class NovelWindow extends JFrame implements NovelWindowManipulate {
         this.actorSpritesPanel.setOpaque(false);
 
         // dialog box panel
-        // ...
+        this.dialogBoxPanel = new JPanel();
+        this.dialogBoxPanel.setBounds(0, 0, this.getWidth(), this.getHeight());
+        this.dialogBoxPanel.setLayout(null);
 
         // choice list panel
         this.choiceListPane = new JLayeredPane();
@@ -75,31 +82,45 @@ public class NovelWindow extends JFrame implements NovelWindowManipulate {
         this.choiceListPane.setVisible(false);
 
         // adding panels to novel pane
-        this.novelPane.add(this.backgroundPanel, 0,0);
+        this.novelPane.add(this.backgroundPanel, 0, 0);
         this.novelPane.add(this.actorSpritesPanel, 1, 0);
-        this.novelPane.add(this.choiceListPane, 3,0);
+        this.novelPane.add(this.dialogBoxPanel, 2, 0);
+        this.novelPane.add(this.choiceListPane, 3, 0);
 
+        this.background = new Background(this.backgroundPanel);
+        this.actorSprites = new ActorSprites(this.actorSpritesPanel);
+        this.dialogBox = new DialogBox();
         this.choiceList = new ChoiceList(
                 this.choiceListPane,
                 choiceListButtonTop,
                 choiceListButtonMiddle,
                 choiceListButtonBottom
         );
-        this.actorSprites = new ActorSprites(this.actorSpritesPanel);
-        this.background = new Background(this.backgroundPanel);
+
+        this.dialogBoxPanel.add(this.dialogBox.getDialogLayer());
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
-
     /**
-     * @param text
-     * @param speaker
+     * Displays a dialogue with the actor's name.
+     *
+     * @param text    The dialogue text.
+     * @param speaker The actor speaking the dialogue.
      */
     @Override
     public void dialogBoxTalk(String text, Actor speaker) {
+        this.dialogBox.talk(text, speaker);
+    }
 
+    /**
+     * Displays a dialogue without a specific speaker.
+     *
+     * @param text The dialogue text.
+     */
+    public void dialogBoxTalk(String text) {
+        this.dialogBox.talk(text, null);
     }
 
     /**
@@ -151,5 +172,14 @@ public class NovelWindow extends JFrame implements NovelWindowManipulate {
     @Override
     public void removeActorSprite(Actor actor, Runnable onFinish) {
         this.actorSprites.removeActor(actor, onFinish);
+    }
+
+
+    public static void main(String[] args) {
+        // Create the window
+        NovelWindow window = new NovelWindow();
+
+        // Test dialogue
+        window.dialogBoxTalk("Hello, welcome to the visual novel!", DefinedActors.getActorByName("Character A"));
     }
 }
