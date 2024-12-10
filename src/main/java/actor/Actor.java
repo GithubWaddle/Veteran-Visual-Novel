@@ -4,14 +4,14 @@ import java.util.Map;
 
 public class Actor {
     public String name;
-    private Map<String, String> expressionImagePaths;
+    private Map<String, String> expressionResourcePaths;
 
-    public Actor(String name, Map<String, String> expressionImagePaths) {
+    public Actor(String name, Map<String, String> expressionResourcePaths) {
         this.name = name;
-        this.expressionImagePaths = new java.util.HashMap<>();
+        this.expressionResourcePaths = expressionResourcePaths;
     }
 
-    String getSpritePathByExpression(String expression) {
-        return null;
+    public String getExpressionResourcePath(String expression) {
+        return this.expressionResourcePaths.get(expression);
     }
 }

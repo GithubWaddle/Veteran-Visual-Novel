@@ -16,7 +16,7 @@ public class SceneEventChoice extends SceneEvent {
     }
 
     @Override
-    public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow) {
+    public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow, Runnable onFinish) {
         List<String> orderedChoices = new ArrayList<>(choicesToJumpIndex.keySet());
 
         System.out.println("Pick a choice!");
@@ -36,5 +36,6 @@ public class SceneEventChoice extends SceneEvent {
         }
 
         SceneEventJump.jumpScenePlayer(scenePlayer, choicesToJumpIndex.get(choice));
+        onFinish.run();
     }
 }

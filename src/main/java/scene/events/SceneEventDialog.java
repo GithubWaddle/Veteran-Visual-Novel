@@ -20,7 +20,7 @@ public class SceneEventDialog extends SceneEvent {
     }
 
     @Override
-    public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow) {
+    public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow, Runnable onFinish) {
         if (this.speaker != null) {
             System.out.println(
                     this.speaker.name + ": " + this.text
@@ -38,5 +38,7 @@ public class SceneEventDialog extends SceneEvent {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        onFinish.run();
     }
 }

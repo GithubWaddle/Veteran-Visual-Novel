@@ -14,11 +14,12 @@ public class SceneEventJump extends SceneEvent {
     }
 
     @Override
-    public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow) {
+    public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow, Runnable onFinish) {
         jumpScenePlayer(scenePlayer, this.index);
+        onFinish.run();
     }
 
     public static void jumpScenePlayer(ScenePlayer scenePlayer, int index) {
-        scenePlayer.setCurrentEventIndex(index - 1);
+        scenePlayer.setCurrentEventIndex(index);
     }
 }

@@ -1,10 +1,8 @@
 package main.java.scene;
 
 import main.java.actor.DefinedActors;
-import main.java.scene.events.SceneEventChoice;
-import main.java.scene.events.SceneEventDialog;
-import main.java.scene.events.SceneEventEnd;
-import main.java.scene.events.SceneEventJump;
+import main.java.scene.events.*;
+import main.java.visual.actorsprite.ActorSprites;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +16,6 @@ public class DefinedScenes {
     static {
         scenes.add(new Scene(
             "intro",
-            "assets/images/intro_background.png",
             Arrays.asList(
                     new SceneEventDialog(
                             "Welcome to the Veteran Visual Novel!"
@@ -31,7 +28,6 @@ public class DefinedScenes {
 
         scenes.add(new Scene(
             "testScene",
-            "assets/images/test_background.png",
             Arrays.asList(
                     new SceneEventDialog(
                             "Hello there!",
@@ -49,7 +45,6 @@ public class DefinedScenes {
         ));
         scenes.add(new Scene(
                 "testSceneWithChoices",
-                "",
                 Arrays.asList(
                         new SceneEventDialog(
                           "Hello!",
@@ -94,6 +89,45 @@ public class DefinedScenes {
                         new SceneEventDialog(
                                 "what.",
                                 DefinedActors.getActorByName("Character A")
+                        )
+                )
+        ));
+
+        scenes.add(new Scene(
+                "testActorSprites",
+                Arrays.asList(
+                        new SceneEventSetBackground(
+                                "images/background/background_test.png"
+                        ),
+                        new SceneEventAddActorSprite(
+                                DefinedActors.getActorByName("Test:Rectangle"),
+                                "default",
+                                ActorSprites.Position.BOTTOM_CENTER
+                        ),
+                        new SceneEventWait(2000),
+                        new SceneEventSetActorSpriteExpression(
+                                DefinedActors.getActorByName("Test:Rectangle"),
+                                "default_talk"
+                        ),
+                        new SceneEventMoveActorSprite(
+                                DefinedActors.getActorByName("Test:Rectangle"),
+                                ActorSprites.Position.BOTTOM_LEFT,
+                                1000
+                        ),
+                        new SceneEventMoveActorSprite(
+                                DefinedActors.getActorByName("Test:Rectangle"),
+                                ActorSprites.Position.BOTTOM_RIGHT,
+                                2000
+                        ),
+                        new SceneEventAddActorSprite(
+                                DefinedActors.getActorByName("Test:Triangle"),
+                                "default",
+                                ActorSprites.Position.BOTTOM_LEFT
+                        ),
+                        new SceneEventAddActorSprite(
+                                DefinedActors.getActorByName("Test:Circle"),
+                                "default",
+                                ActorSprites.Position.BOTTOM_CENTER
                         )
                 )
         ));
