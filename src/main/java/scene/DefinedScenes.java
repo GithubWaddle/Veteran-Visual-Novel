@@ -96,10 +96,18 @@ public class DefinedScenes {
         scenes.add(new Scene(
                 "testActorSprites",
                 Arrays.asList(
+                        new SceneEventSetBackground(
+                                "images/background/background_test.png"
+                        ),
                         new SceneEventAddActorSprite(
                                 DefinedActors.getActorByName("Test:Rectangle"),
                                 "default",
                                 ActorSprites.Position.BOTTOM_CENTER
+                        ),
+                        new SceneEventWait(2000),
+                        new SceneEventSetActorSpriteExpression(
+                                DefinedActors.getActorByName("Test:Rectangle"),
+                                "default_talk"
                         ),
                         new SceneEventMoveActorSprite(
                                 DefinedActors.getActorByName("Test:Rectangle"),

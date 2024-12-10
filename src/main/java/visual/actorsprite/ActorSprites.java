@@ -27,10 +27,12 @@ public class ActorSprites {
 
     private JPanel actorSpritesPanel;
     private Map<Actor, ActorSprite> sprites;
+    private Map<Actor, Position> actorToPosition;
 
     public ActorSprites(JPanel actorSpritesPanel) {
         this.actorSpritesPanel = actorSpritesPanel;
         this.sprites = new HashMap<>();
+        this.actorToPosition = new HashMap<>();
     }
 
     public void addActor(Actor actor, String expression, Position position, Runnable onFinish) {
@@ -45,9 +47,11 @@ public class ActorSprites {
         onFinish.run();
     }
 
-    public void setActorExpression(Actor actor, String expression) {
+    public void setActorExpression(Actor actor, String expression, Runnable onFinish) {
         sprites.get(actor).setExpression(expression);
+        setActorPosition(actor, actorToPosition.get(actor));
         actorSpritesPanel.repaint();
+        onFinish.run();
     }
 
     public void setActorPosition(Actor actor, int xPixels, int yPixels) {
@@ -55,6 +59,7 @@ public class ActorSprites {
     }
 
     public void setActorPosition(Actor actor, Position position) {
+        actorToPosition.put(actor, position);
         ActorSprite actorSprite = sprites.get(actor);
         int yPixels = Configuration.WINDOW_HEIGHT_PIXELS - actorSprite.getHeight();
         int halfWidthPixels = actorSprite.getWidth() / 2;
@@ -135,6 +140,7 @@ public class ActorSprites {
     }
 
     public void moveActor(Actor actor, Position position, int durationMilliseconds, Runnable onFinish) {
+        actorToPosition.put(actor, position);
         ActorSprite actorSprite = sprites.get(actor);
         int yEndPixels = Configuration.WINDOW_HEIGHT_PIXELS - actorSprite.getHeight();
         int halfWidthPixels = actorSprite.getWidth() / 2;

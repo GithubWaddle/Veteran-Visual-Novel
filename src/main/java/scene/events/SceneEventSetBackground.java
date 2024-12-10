@@ -12,6 +12,7 @@ public class SceneEventSetBackground extends SceneEvent {
 
     @Override
     public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow, Runnable onFinish) {
-        novelWindow.setBackground(imagePath, onFinish);
+        onFinish.run();
+        //novelWindow.setBackground(imagePath, onFinish);
     }
 }

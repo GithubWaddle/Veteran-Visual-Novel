@@ -7,7 +7,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class SceneEventWait extends SceneEvent {
-    long durationMilliseconds;
+    int durationMilliseconds;
+
+    public SceneEventWait(int durationMilliseconds) {
+        this.durationMilliseconds = durationMilliseconds;
+    }
 
     @Override
     public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow, Runnable onFinish) {

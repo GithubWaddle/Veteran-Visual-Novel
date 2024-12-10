@@ -30,6 +30,9 @@ public class NovelWindow extends JFrame implements NovelWindowManipulate {
         add(this.novelPane);
 
         this.backgroundPanel = new JPanel();
+        this.backgroundPanel.setBounds(0, 0, this.getWidth(), this.getHeight());
+        this.backgroundPanel.setLayout(null);
+
         this.actorSpritesPanel = new JPanel();
         this.actorSpritesPanel.setBounds(0, 0, this.getWidth(), this.getHeight());
         this.actorSpritesPanel.setLayout(null);
@@ -38,8 +41,7 @@ public class NovelWindow extends JFrame implements NovelWindowManipulate {
         this.novelPane.add(this.actorSpritesPanel, 1);
 
         this.actorSprites = new ActorSprites(this.actorSpritesPanel);
-        this.background = new Background("images/background/background_test.png");
-        this.backgroundPanel.add(this.background);
+        this.background = new Background(this.backgroundPanel);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
@@ -84,7 +86,7 @@ public class NovelWindow extends JFrame implements NovelWindowManipulate {
      */
     @Override
     public void setActorSpriteExpression(Actor actor, String expression, Runnable onFinish) {
-        actorSprites.setActorExpression(actor, expression);
+        actorSprites.setActorExpression(actor, expression, onFinish);
     }
 
     @Override
