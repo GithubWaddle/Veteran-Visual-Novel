@@ -90,14 +90,13 @@ public class NovelWindow extends JFrame implements NovelWindowManipulate {
         this.transitionPanel.setBounds(0, 0, this.getWidth(), this.getHeight());
         this.transitionPanel.setLayout(null);
         this.transitionPanel.setOpaque(false);
-        this.transitionPanel.setVisible(true);
 
         // adding panels to novel pane
-        this.novelPane.add(this.backgroundPanel, 0, 0);
-        this.novelPane.add(this.actorSpritesPanel, 1, 0);
-        this.novelPane.add(this.dialogBoxPanel, 2, 0);
-        this.novelPane.add(this.choiceListPane, 3, 0);
-        this.novelPane.add(this.transitionPanel, 4, 0);
+        this.novelPane.add(this.backgroundPanel, Integer.valueOf(0));
+        this.novelPane.add(this.actorSpritesPanel, Integer.valueOf(1));
+        this.novelPane.add(this.dialogBoxPanel, Integer.valueOf(2));
+        this.novelPane.add(this.choiceListPane, Integer.valueOf(3));
+        this.novelPane.add(this.transitionPanel, Integer.valueOf(4));
 
         this.background = new Background(this.backgroundPanel);
         this.actorSprites = new ActorSprites(this.actorSpritesPanel);
