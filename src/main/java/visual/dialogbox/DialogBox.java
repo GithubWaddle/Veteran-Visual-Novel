@@ -19,7 +19,6 @@ public class DialogBox {
     private String currentText;  // Current full text to be displayed
     private int currentCharIndex;  // Index of the current character being displayed
     private String currentSpeaker;
-
     public DialogBox() {
 
         dialogLayer = new JLayeredPane();
@@ -30,23 +29,23 @@ public class DialogBox {
         JPanel dialogBox = new JPanel();
         dialogBox.setBounds(200, Configuration.WINDOW_HEIGHT_PIXELS - 200, 800, 150);
         dialogBox.setLayout(null);
-        dialogBox.setBackground(new Color(0, 0, 0, 180));
-
+        dialogBox.setBackground(new Color(128, 0, 0, 180));
         // Speaker box panel
         JPanel speakerBox = new JPanel();
-        speakerBox.setBounds(200, Configuration.WINDOW_HEIGHT_PIXELS - 250, 200, 50);
-        speakerBox.setLayout(new BorderLayout());
-        speakerBox.setBackground(new Color(0, 0, 0, 180));
+        speakerBox.setBounds(200, Configuration.WINDOW_HEIGHT_PIXELS - 250, 200, 30);
+        speakerBox.setLayout(null);
+        speakerBox.setBackground(new Color(128, 0, 0, 180));
 
         // Label for speaker name
-        speakerName = new JLabel("Speaker");
-        speakerName.setFont(new Font("Times New Roman", Font.BOLD, 16));
+        speakerName = new JLabel();
+        speakerName.setFont(new Font("Comic Sans", Font.BOLD, 16));
         speakerName.setForeground(Color.WHITE);
-
+        speakerName.setHorizontalAlignment(SwingConstants.CENTER);
+        speakerName.setBounds(0,0,200,30);
         // Label for dialog text
         speakerText = new JLabel();
         speakerText.setBounds(10, 10, 780, 130);
-        speakerText.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+        speakerText.setFont(new Font("Comic Sans", Font.PLAIN, 16));
         speakerText.setForeground(Color.WHITE);
         speakerText.setVerticalAlignment(SwingConstants.TOP);
         speakerText.setHorizontalAlignment(SwingConstants.LEFT);
@@ -57,14 +56,16 @@ public class DialogBox {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // Skip the text animation by stopping the timer and showing the full text
+
                 if (timer != null && timer.isRunning()) {
                     timer.stop();
                 }
+                System.out.println("Text Skipped");
                 speakerText.setText("<html>" + currentText.replace("\n", "<br>") + "</html>");
             }
         });
 
-        speakerBox.add(speakerName, BorderLayout.CENTER);
+        speakerBox.add(speakerName);
         dialogBox.add(speakerText);
 
         dialogLayer.add(speakerBox, Integer.valueOf(1));
@@ -85,27 +86,34 @@ public class DialogBox {
         // Update current speaker and text
         currentText = text;
         currentCharIndex = 0;
-        currentSpeaker = speaker.name; // Set current speaker's name
-
+        if(speaker!=null) {
+            currentSpeaker = speaker.name; // Set current speaker's name
+        }else{
+            currentSpeaker = "Narrator";
+        }
         // Update UI
         speakerName.setText(currentSpeaker);
 
         // Stop the timer if it's already running
+
         if (timer != null && timer.isRunning()) {
             timer.stop();
         }
 
         // Typing effect using a Timer
-        timer = new Timer(40, e -> {
+        timer = new Timer(35, e -> {
             if (currentCharIndex < currentText.length()) {
                 String formattedText = "<html>" + currentText.substring(0, currentCharIndex + 1).replace("\n", "<br>") + "</html>";
                 speakerText.setText(formattedText);
                 currentCharIndex++;
             } else {
                 timer.stop(); // Stop the timer when the text is fully displayed
+
             }
         });
 
         timer.start(); // Start the animation
+
+
     }
 }
