@@ -24,12 +24,12 @@ public class DefinedScenes {
                     ),
                     new SceneEventAddActorSprite(
                             "Juan",
-                            "default",
+                            "sad",
                             ActorSprites.Position.BOTTOM_LEFT
                     ),
                     new SceneEventAddActorSprite(
                             "Nanda",
-                            "default",
+                            "shocked",
                             ActorSprites.Position.BOTTOM_RIGHT
                     ),
                     new SceneEventWait(1000),
@@ -37,6 +37,10 @@ public class DefinedScenes {
                     new SceneEventDialog(
                             "Kamu kelihatan nggak fokus hari ini, bro. Apa ini soal tawaran dari Pak Rafi?",
                             "Nanda"
+                    ),
+                    new SceneEventSetActorSpriteExpression(
+                            "Nanda",
+                            "default"
                     ),
                     new SceneEventDialog(
                             "Iya. Tawaran itu besar, tapi Clara mengirim pesan, dan itu memunculkan banyak kenangan lama.",
@@ -56,7 +60,7 @@ public class DefinedScenes {
                     ),
                     new SceneEventShowCoverTransition(),
                     new SceneEventSwitchScene(
-                            "Still Career Focus"
+                            "Home Thoughts of Decision"
                     )
             )
         ));
@@ -79,13 +83,25 @@ public class DefinedScenes {
                         ),
                         new SceneEventWait(1000),
                         new SceneEventHideCoverTransition(),
+                        new SceneEventSetActorSpriteExpression(
+                                "Ibu",
+                                "delighted1"
+                        ),
                         new SceneEventDialog(
                                 "Jadi, Nak, kau sudah membuat keputusan tentang tawaran itu?",
                                 "Ibu"
                         ),
+                        new SceneEventSetActorSpriteExpression(
+                                "Juan",
+                                "sad"
+                        ),
                         new SceneEventDialog(
                                 "Belum, Bu. Aku bingung. Tawaran itu bagus, tapi ada Clara... dia ingin kita mencoba lagi.",
                                 "Juan"
+                        ),
+                        new SceneEventSetActorSpriteExpression(
+                                "Ibu",
+                                "default"
                         ),
                         new SceneEventDialog(
                                 "Hidup memang penuh pilihan sulit. Tapi, kau harus tahu apa yang membuatmu bahagia. Apakah karir besar di luar negeri, atau seseorang yang kau cintai di sini?",
@@ -119,7 +135,7 @@ public class DefinedScenes {
                         ),
                         new SceneEventAddActorSprite(
                                 "Clara",
-                                "default",
+                                "sad",
                                 ActorSprites.Position.BOTTOM_RIGHT
                         ),
                         new SceneEventWait(1000),
@@ -136,9 +152,18 @@ public class DefinedScenes {
                                 "Aku baik, tapi jujur saja, aku masih memikirkan pesan yang kukirimkan kemarin. Aku ingin kita bicara tentang... kita.",
                                 "Clara"
                         ),
+                        new SceneEventSetActorSpriteExpression(
+                                "Juan",
+                                "sad"
+                        ),
                         new SceneEventDialog(
                                 "Aku tahu. Pesanmu membuatku banyak berpikir. Tapi aku juga sedang dihadapkan pada pilihan besar di pekerjaannya.",
                                 "Juan"
+                        ),
+                        new SceneEventMoveActorSprite(
+                                "Clara",
+                                ActorSprites.Position.BOTTOM_CENTER,
+                                0
                         ),
                         new SceneEventDialog(
                                 "Aku hanya ingin tahu, Juan... apa aku masih menjadi bagian dari pilihanmu?",
@@ -146,8 +171,8 @@ public class DefinedScenes {
                         ),
                         new SceneEventChoice(
                                 Map.of(
-                                        "Pilih karir di luar negeri", 11,
-                                        "Tetap tinggal dan mengejar hubungan dengan Clara", 13
+                                        "Pilih karir di luar negeri", 13,
+                                        "Tetap tinggal dan mengejar hubungan dengan Clara", 15
                                 )
                         ),
                         new SceneEventShowCoverTransition(),
@@ -174,7 +199,7 @@ public class DefinedScenes {
                         ),
                         new SceneEventAddActorSprite(
                                 "Bos Rafi",
-                                "default",
+                                "laugh",
                                 ActorSprites.Position.BOTTOM_RIGHT
                         ),
                         new SceneEventWait(1000),
@@ -183,9 +208,17 @@ public class DefinedScenes {
                                 "Juan, kita sedang berada di jalur yang tepat, tapi aku membutuhkan komitmenmu sepenuhnya. Ini kesempatan besar untuk kita. Apa kau siap mengambil tantangan ini?",
                                 "Bos Rafi"
                         ),
+                        new SceneEventSetActorSpriteExpression(
+                                "Juan",
+                                "smile2"
+                        ),
                         new SceneEventDialog(
                                 "Tentu, Pak. Saya akan pastikan proyek ini sukses.",
                                 "Juan"
+                        ),
+                        new SceneEventSetActorSpriteExpression(
+                                "Juan",
+                                "smile1"
                         ),
                         new SceneEventDialog(
                                 "Aku tahu kau bisa melakukannya. Jangan lupa, Juan, kadang kita harus menemukan keseimbangan dalam hidup kita, bukan hanya karir. Jangan sampai pekerjaan menguasai segalanya.",
@@ -224,19 +257,37 @@ public class DefinedScenes {
                                 "Aku ingin sukses. Aku ingin memastikan hidupku berarti.",
                                 "Juan"
                         ),
+                        new SceneEventSetActorSpriteExpression(
+                                "Elena",
+                                "smile1"
+                        ),
+                        new SceneEventMoveActorSprite(
+                                "Elena",
+                                ActorSprites.Position.BOTTOM_CENTER_RIGHT,
+                                0
+                        ),
                         new SceneEventDialog(
                                 "Tapi sukses tanpa kebahagiaan itu kosong, Juan.",
                                 "Elena"
                         ),
                         new SceneEventChoice(
                                 Map.of(
-                                        "Mengejar hubungan dengan Elena", 9,
-                                        "Tetap tinggal dan mengejar hubungan dengan Clara", 14
+                                        "Mengejar hubungan dengan Elena", 11,
+                                        "Tetap tinggal dan mengejar hubungan dengan Clara", 19
                                 )
+                        ),
+                        new SceneEventSetActorSpriteExpression(
+                                "Juan",
+                                "smile1"
                         ),
                         new SceneEventDialog(
                                 "Elena, aku merasa ada koneksi yang kuat antara kita.",
                                 "Juan"
+                        ),
+                        new SceneEventMoveActorSprite(
+                                "Elena",
+                                ActorSprites.Position.BOTTOM_CENTER,
+                                0
                         ),
                         new SceneEventDialog(
                                 "Kita bisa saling mendukung dan membuat hidup kita lebih berarti.",
@@ -244,11 +295,12 @@ public class DefinedScenes {
                         ),
                         new SceneEventChoice(
                                 Map.of(
-                                        "Kurangi fokus pada pekerjaan untuk Elena", 12,
-                                        "Tetap prioritaskan startup", 14
+                                        "Kurangi fokus pada pekerjaan untuk Elena", 16,
+                                        "Tetap prioritaskan startup", 19
                                 )
                         ),
                         new SceneEventShowCoverTransition(),
+                        new SceneEventSetVariable("ending", "With Elena"),
                         new SceneEventSwitchScene(
                                 "The Ending"
                         ),
@@ -263,6 +315,8 @@ public class DefinedScenes {
                 Arrays.asList(
                         new SceneEventSetBackground("images/background/office2.png"),
                         new SceneEventAddActorSprite(DefinedActors.getActorByName("Juan"),"default",ActorSprites.Position.BOTTOM_CENTER),
+                        new SceneEventWait(1000),
+                        new SceneEventHideCoverTransition(),
                         new SceneEventDialog(".......",DefinedActors.getActorByName("Juan")),
                         new SceneEventWait(500),
                         new SceneEventSetActorSpriteExpression(DefinedActors.getActorByName("Juan"),"smile1"),
@@ -275,6 +329,8 @@ public class DefinedScenes {
         scenes.add(new Scene("Failed Career Focus",Arrays.asList(
                 new SceneEventSetBackground("images/background/empty_office.png"),
                 new SceneEventAddActorSprite(DefinedActors.getActorByName("Bos Rafi"),"angry1",ActorSprites.Position.BOTTOM_RIGHT),
+                new SceneEventWait(1000),
+                new SceneEventHideCoverTransition(),
                 new SceneEventWait(500),
                 new SceneEventSetActorSpriteExpression(DefinedActors.getActorByName("Bos Rafi"),"angry2"),
                 new SceneEventAddActorSprite(DefinedActors.getActorByName("Juan"),"default",ActorSprites.Position.BOTTOM_LEFT),
@@ -285,8 +341,8 @@ public class DefinedScenes {
                 new SceneEventWait(1000),
                 new SceneEventChoice(
                         Map.of(
-                                "Kembali ke negara asal dan bertemu Clara",12,/*Return to clara*/
-                                "Mencoba bangkit membangun karir kembali di luar negeri",14/*Make it Big Outside*/
+                                "Kembali ke negara asal dan bertemu Clara",13,/*Return to clara*/
+                                "Mencoba bangkit membangun karir kembali di luar negeri",15/*Make it Big Outside*/
                         )
                 ),
                 new SceneEventShowCoverTransition(),
@@ -300,6 +356,8 @@ public class DefinedScenes {
                 new SceneEventSetBackground("images/background/park.png"),
                 new SceneEventAddActorSprite(DefinedActors.getActorByName("Juan"),"default",ActorSprites.Position.BOTTOM_LEFT),
                 new SceneEventAddActorSprite(DefinedActors.getActorByName("Clara"),"default",ActorSprites.Position.BOTTOM_RIGHT),
+                new SceneEventWait(1000),
+                new SceneEventHideCoverTransition(),
                 new SceneEventDialog(".......",DefinedActors.getActorByName("Clara")),
                 new SceneEventSetActorSpriteExpression(DefinedActors.getActorByName("Clara"),"delighted2"),
                 new SceneEventDialog("Aku tahu kau sedang sulit, tapi aku masih percaya kita bisa saling mendukung. Aku ada di sini untukmu.",DefinedActors.getActorByName("Clara")),
@@ -309,8 +367,8 @@ public class DefinedScenes {
                 new SceneEventWait(1000),
                 new SceneEventChoice(
                         Map.of(
-                                "Terima dukungan Clara",12,/*Love For Clara?*/
-                                "Tolak bantuan Clara",14/*New Happiness*/
+                                "Terima dukungan Clara",13,/*Love For Clara?*/
+                                "Tolak bantuan Clara",15/*New Happiness*/
                         )
                 ),
 
@@ -325,6 +383,8 @@ public class DefinedScenes {
         scenes.add(new Scene("Make it Big Outside",Arrays.asList(
                 new SceneEventSetBackground("images/background/office2.png"),
                 new SceneEventWait(1000),
+                new SceneEventHideCoverTransition(),
+                new SceneEventWait(1000),
                 new SceneEventAddActorSprite(DefinedActors.getActorByName("Juan"),"sad",ActorSprites.Position.BOTTOM_CENTER),
                 new SceneEventWait(100),
                 new SceneEventSetActorSpriteExpression(DefinedActors.getActorByName("Juan"),"default"),
@@ -332,9 +392,9 @@ public class DefinedScenes {
                 new SceneEventSetActorSpriteExpression(DefinedActors.getActorByName("Juan"),"smile2"),
                 new SceneEventWait(100),
                 new SceneEventSetActorSpriteExpression(DefinedActors.getActorByName("Juan"),"smile1"),
-
                 new SceneEventDialog("Aku akan mencoba bangkit dan membangun karirku kembali.",DefinedActors.getActorByName("Juan")),
                 new SceneEventShowCoverTransition(),
+                new SceneEventSetVariable("ending", "Make it Big Outside"),
                 new SceneEventSwitchScene("The Ending")
 
         )));
@@ -343,6 +403,8 @@ public class DefinedScenes {
                 new SceneEventSetBackground("images/background/busy_office.png"),
                 new SceneEventAddActorSprite(DefinedActors.getActorByName("Juan"),"default",ActorSprites.Position.BOTTOM_LEFT),
                 new SceneEventAddActorSprite(DefinedActors.getActorByName("Clara"),"angry1",ActorSprites.Position.BOTTOM_RIGHT),
+                new SceneEventWait(1000),
+                new SceneEventHideCoverTransition(),
                 new SceneEventDialog("..   .....   ......",DefinedActors.getActorByName("Clara")),
                 new SceneEventSetActorSpriteExpression(DefinedActors.getActorByName("Clara"),"angry2"),
                 new SceneEventSetActorSpriteExpression(DefinedActors.getActorByName("Juan"),"shocked"),
@@ -353,12 +415,12 @@ public class DefinedScenes {
                 new SceneEventWait(1000),
                 new SceneEventChoice(
                         Map.of(
-                                "Kurangi fokus pada pekerjaan untuk menjaga hubungan",13,/*The Ending*/
-                                "Memprioritaskan pertumbuhan startup",15/*New Happiness*/
+                                "Kurangi fokus pada pekerjaan untuk menjaga hubungan",14,/*The Ending*/
+                                "Memprioritaskan pertumbuhan startup",17/*New Happiness*/
                         )
                 ),
-
                 new SceneEventShowCoverTransition(),
+                new SceneEventSetVariable("ending", "Rebuilding With Clara"),
                 new SceneEventSwitchScene("The Ending"),
                 new SceneEventShowCoverTransition(),
                 new SceneEventSwitchScene("New Happiness")
@@ -368,6 +430,8 @@ public class DefinedScenes {
         scenes.add(new Scene("New Happiness",Arrays.asList(
                 new SceneEventSetBackground("images/background/park_night.png"),
                 new SceneEventAddActorSprite(DefinedActors.getActorByName("Juan"),"sad",ActorSprites.Position.BOTTOM_LEFT),
+                new SceneEventWait(1000),
+                new SceneEventHideCoverTransition(),
                 new SceneEventDialog("..   ....   .......",DefinedActors.getActorByName("Juan")),
                 new SceneEventAddActorSprite(DefinedActors.getActorByName("Nanda"),"default",ActorSprites.Position.BOTTOM_RIGHT),
                 new SceneEventSetActorSpriteExpression(DefinedActors.getActorByName("Juan"),"default"),
@@ -378,17 +442,29 @@ public class DefinedScenes {
 
                 new SceneEventChoice(
                         Map.of(
-                                "Terima tawaran kerja di luar negeri",11,
-                                "Memulai hidup baru di kota sendiri",13
+                                "Terima tawaran kerja di luar negeri",12,
+                                "Memulai hidup baru di kota sendiri",15
                         )
                 ),
-
                 new SceneEventShowCoverTransition(),
+                new SceneEventSetVariable("ending", "A New Job"),
                 new SceneEventSwitchScene("The Ending"),
                 new SceneEventShowCoverTransition(),
+                new SceneEventSetVariable("ending", "A New Life"),
                 new SceneEventSwitchScene("The Ending")
 
         )));
+
+        scenes.add(new Scene(
+                "The Ending",
+                Arrays.asList(
+                        new SceneEventWait(1000),
+                        new SceneEventHideCoverTransition(),
+                        new SceneEventDialog(
+                                "Ending: $ending"
+                        )
+                )
+        ));
 
         // TEST
         scenes.add(new Scene(

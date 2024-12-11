@@ -27,7 +27,7 @@ public class SceneEventDialog extends SceneEvent {
     @Override
     public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow, Runnable onFinish) {
         novelWindow.dialogBoxTalk(
-                this.text,
+                scenePlayer.processTextForVariables(this.text),
                 this.speaker,
                 onFinish
         );

@@ -3,7 +3,11 @@ package main.java.scene;
 import main.java.scene.events.SceneEvent;
 import main.java.visual.NovelWindow;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Pemain suatu Scene.
@@ -13,6 +17,7 @@ public class ScenePlayer {
     private NovelWindow novelWindow;
     private int currentEventIndex;
     private boolean isPlaying = false;
+    private Map<String, Object> variables;
 
     /**
      * Konstruktor ScenePlayer
@@ -22,6 +27,7 @@ public class ScenePlayer {
         this.scene = scene;
         this.novelWindow = novelWindow;
         this.currentEventIndex = 0;
+        this.variables = new HashMap<>();
     }
 
     /**
@@ -80,5 +86,22 @@ public class ScenePlayer {
      */
     public void setCurrentEventIndex(int currentEventIndex) {
         this.currentEventIndex = currentEventIndex;
+    }
+
+    public void setVariable(String name, Object value) {
+        this.variables.put(name, value);
+    }
+
+    public Object getVariable(String name) {
+        return this.variables.get(name);
+    }
+
+    public String processTextForVariables(String raw) {
+        Pattern variablePattern = Pattern.compile("\\$(\\w+)");
+        Matcher matcher = variablePattern.matcher(raw);
+        return matcher.replaceAll(matchResult -> {
+            String variableName = matchResult.group(1);
+            return (String) getVariable(variableName);
+        });
     }
 }
