@@ -119,9 +119,6 @@ public class NovelWindow extends JFrame implements NovelWindowManipulate {
      *
      * @param text The dialogue text.
      */
-    public void dialogBoxTalk(String text) {
-        this.dialogBox.talk(text, null);
-    }
 
     /**
      * @param choices
@@ -174,12 +171,14 @@ public class NovelWindow extends JFrame implements NovelWindowManipulate {
         this.actorSprites.removeActor(actor, onFinish);
     }
 
-
+/*
     public static void main(String[] args) {
         // Create the window
         NovelWindow window = new NovelWindow();
 
         // Test dialogue
-        window.dialogBoxTalk("Hello, welcome to the visual novel!", DefinedActors.getActorByName("Character A"));
+        window.dialogBoxTalk("Hello, welcome to the visual novel!Hello, welcome to the visual novel!Hello, welcome to the visual novel!Hello, welcome to the visual novel!Hello, welcome to the visual novel!Hello, welcome to the visual novel!Hello, welcome to the visual novel!Hello, welcome to the visual novel!", DefinedActors.getActorByName("Juan"));
     }
+    ========================FOR TESTING PURPOSE========================
+ */
 }
