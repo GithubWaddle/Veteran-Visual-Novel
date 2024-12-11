@@ -32,6 +32,8 @@ public class DefinedScenes {
                             "default",
                             ActorSprites.Position.BOTTOM_RIGHT
                     ),
+                    new SceneEventWait(1000),
+                    new SceneEventHideCoverTransition(),
                     new SceneEventDialog(
                             "Kamu kelihatan nggak fokus hari ini, bro. Apa ini soal tawaran dari Pak Rafi?",
                             "Nanda"
@@ -80,6 +82,26 @@ public class DefinedScenes {
                         new SceneEventDialog(
                                 "Jadi, Nak, kau sudah membuat keputusan tentang tawaran itu?",
                                 "Ibu"
+                        ),
+                        new SceneEventDialog(
+                                "Belum, Bu. Aku bingung. Tawaran itu bagus, tapi ada Clara... dia ingin kita mencoba lagi.",
+                                "Juan"
+                        ),
+                        new SceneEventDialog(
+                                "Hidup memang penuh pilihan sulit. Tapi, kau harus tahu apa yang membuatmu bahagia. Apakah karir besar di luar negeri, atau seseorang yang kau cintai di sini?",
+                                "Ibu"
+                        ),
+                        new SceneEventDialog(
+                                "Tapi kalau aku memilih Clara dan gagal? Atau kalau aku pergi dan merasa kesepian?",
+                                "Juan"
+                        ),
+                        new SceneEventDialog(
+                                "Hanya kau yang bisa menjawab itu, Nak. Tapi, ingat ini: kebahagiaan sejati tidak diukur dari uang atau jabatan. Itu tentang perasaanmu saat bangun di pagi hari.",
+                                "Ibu"
+                        ),
+                        new SceneEventShowCoverTransition(),
+                        new SceneEventSwitchScene(
+                                "Career or Love"
                         )
                 )
         ));
@@ -87,28 +109,153 @@ public class DefinedScenes {
         scenes.add(new Scene(
                 "Career or Love",
                 Arrays.asList(
-
+                        new SceneEventSetBackground(
+                                "images/background/park.png"
+                        ),
+                        new SceneEventAddActorSprite(
+                                "Juan",
+                                "default",
+                                ActorSprites.Position.BOTTOM_LEFT
+                        ),
+                        new SceneEventAddActorSprite(
+                                "Clara",
+                                "default",
+                                ActorSprites.Position.BOTTOM_RIGHT
+                        ),
+                        new SceneEventWait(1000),
+                        new SceneEventHideCoverTransition(),
+                        new SceneEventDialog(
+                                "Juan, terima kasih sudah datang. Aku tahu kamu pasti sibuk.",
+                                "Clara"
+                        ),
+                        new SceneEventDialog(
+                                "Aku selalu punya waktu untukmu, Clara. Bagaimana kabarmu?",
+                                "Juan"
+                        ),
+                        new SceneEventDialog(
+                                "Aku baik, tapi jujur saja, aku masih memikirkan pesan yang kukirimkan kemarin. Aku ingin kita bicara tentang... kita.",
+                                "Clara"
+                        ),
+                        new SceneEventDialog(
+                                "Aku tahu. Pesanmu membuatku banyak berpikir. Tapi aku juga sedang dihadapkan pada pilihan besar di pekerjaannya.",
+                                "Juan"
+                        ),
+                        new SceneEventDialog(
+                                "Aku hanya ingin tahu, Juan... apa aku masih menjadi bagian dari pilihanmu?",
+                                "Clara"
+                        ),
+                        new SceneEventChoice(
+                                Map.of(
+                                        "Pilih karir di luar negeri", 11,
+                                        "Tetap tinggal dan mengejar hubungan dengan Clara", 13
+                                )
+                        ),
+                        new SceneEventShowCoverTransition(),
+                        new SceneEventSwitchScene(
+                                "Career Focus"
+                        ),
+                        new SceneEventShowCoverTransition(),
+                        new SceneEventSwitchScene(
+                                "Failed Career Focus"
+                        )
                 )
         ));
 
         scenes.add(new Scene(
                 "Career Focus",
                 Arrays.asList(
-
+                        new SceneEventSetBackground(
+                                "images/background/busy_office.png"
+                        ),
+                        new SceneEventAddActorSprite(
+                                "Juan",
+                                "default",
+                                ActorSprites.Position.BOTTOM_LEFT
+                        ),
+                        new SceneEventAddActorSprite(
+                                "Bos Rafi",
+                                "default",
+                                ActorSprites.Position.BOTTOM_RIGHT
+                        ),
+                        new SceneEventWait(1000),
+                        new SceneEventHideCoverTransition(),
+                        new SceneEventDialog(
+                                "Juan, kita sedang berada di jalur yang tepat, tapi aku membutuhkan komitmenmu sepenuhnya. Ini kesempatan besar untuk kita. Apa kau siap mengambil tantangan ini?",
+                                "Bos Rafi"
+                        ),
+                        new SceneEventDialog(
+                                "Tentu, Pak. Saya akan pastikan proyek ini sukses.",
+                                "Juan"
+                        ),
+                        new SceneEventDialog(
+                                "Aku tahu kau bisa melakukannya. Jangan lupa, Juan, kadang kita harus menemukan keseimbangan dalam hidup kita, bukan hanya karir. Jangan sampai pekerjaan menguasai segalanya.",
+                                "Bos Rafi"
+                        ),
+                        new SceneEventShowCoverTransition(),
+                        new SceneEventSwitchScene(
+                                "Elena Love?"
+                        )
                 )
         ));
 
         scenes.add(new Scene(
                 "Elena Love?",
                 Arrays.asList(
-
-                )
-        ));
-
-        scenes.add(new Scene(
-                "Still Elena Love?",
-                Arrays.asList(
-
+                        new SceneEventSetBackground(
+                                "images/background/cafe.png"
+                        ),
+                        new SceneEventAddActorSprite(
+                                "Juan",
+                                "default",
+                                ActorSprites.Position.BOTTOM_LEFT
+                        ),
+                        new SceneEventAddActorSprite(
+                                "Elena",
+                                "default",
+                                ActorSprites.Position.BOTTOM_RIGHT
+                        ),
+                        new SceneEventWait(1000),
+                        new SceneEventHideCoverTransition(),
+                        new SceneEventDialog(
+                                "Juan, hidup bukan cuma soal kerja. Apa kau pernah berpikir tentang apa yang benar-benar kau inginkan?",
+                                "Elena"
+                        ),
+                        new SceneEventDialog(
+                                "Aku ingin sukses. Aku ingin memastikan hidupku berarti.",
+                                "Juan"
+                        ),
+                        new SceneEventDialog(
+                                "Tapi sukses tanpa kebahagiaan itu kosong, Juan.",
+                                "Elena"
+                        ),
+                        new SceneEventChoice(
+                                Map.of(
+                                        "Mengejar hubungan dengan Elena", 9,
+                                        "Tetap tinggal dan mengejar hubungan dengan Clara", 14
+                                )
+                        ),
+                        new SceneEventDialog(
+                                "Elena, aku merasa ada koneksi yang kuat antara kita.",
+                                "Juan"
+                        ),
+                        new SceneEventDialog(
+                                "Kita bisa saling mendukung dan membuat hidup kita lebih berarti.",
+                                "Elena"
+                        ),
+                        new SceneEventChoice(
+                                Map.of(
+                                        "Kurangi fokus pada pekerjaan untuk Elena", 12,
+                                        "Tetap prioritaskan startup", 14
+                                )
+                        ),
+                        new SceneEventShowCoverTransition(),
+                        new SceneEventSwitchScene(
+                                "The Ending"
+                        ),
+                        new SceneEventShowCoverTransition(),
+                        new SceneEventSwitchScene(
+                                "Still Career Focus"
+                        )
                 )
         ));
 

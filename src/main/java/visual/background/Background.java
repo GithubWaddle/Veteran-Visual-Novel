@@ -10,7 +10,7 @@ public class Background {
     public Background(JPanel backgroundPane) {
         this.backgroundPane = backgroundPane;
         this.backgroundImageLabel = new JLabel();
-        this.backgroundPane.add(this.backgroundImageLabel, JLayeredPane.DEFAULT_LAYER);
+        this.backgroundPane.add(this.backgroundImageLabel);
     }
 
     public void set(String imageResourcePath, Runnable onFinish) {
