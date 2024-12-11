@@ -32,6 +32,11 @@ public class ScenePlayer {
         return ((this.currentEventIndex < this.scene.getEvents().size()) && this.isPlaying);
     }
 
+    public void setScene(Scene scene) {
+        this.scene = scene;
+        this.currentEventIndex = 0;
+    }
+
     /**
      * Menjalankan ScenePlayer.
      */

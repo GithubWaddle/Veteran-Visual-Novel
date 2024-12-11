@@ -54,6 +54,7 @@ public class NovelWindow extends JFrame implements NovelWindowManipulate {
         this.dialogBoxPanel = new JPanel();
         this.dialogBoxPanel.setBounds(0, 0, this.getWidth(), this.getHeight());
         this.dialogBoxPanel.setLayout(null);
+        this.dialogBoxPanel.setOpaque(false);
 
         // choice list panel
         this.choiceListPane = new JLayeredPane();
