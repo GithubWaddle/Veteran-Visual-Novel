@@ -10,44 +10,105 @@ import java.util.List;
 import java.util.Map;
 
 public class DefinedScenes {
-    private static List<Scene> scenes = new ArrayList<>();
+    private static final List<Scene> scenes = new ArrayList<>();
 
     // Inisialisasi scene yang tersedia
     static {
         // REAL
         scenes.add(new Scene(
-            "intro",
+            "Work Thoughts of Decision",
             Arrays.asList(
-                    new SceneEventAddActorSprite(
-                            "Clara",
-                            "default",
-                            ActorSprites.Position.BOTTOM_RIGHT
+                    new SceneEventSetBackground(
+                            "images/background/busy_office.png"
                     ),
                     new SceneEventAddActorSprite(
                             "Juan",
                             "default",
                             ActorSprites.Position.BOTTOM_LEFT
                     ),
-                    new SceneEventWait(2000),
-                    new SceneEventMoveActorSprite(
-                            "Clara",
-                            ActorSprites.Position.BOTTOM_CENTER_RIGHT,
-                            0
+                    new SceneEventAddActorSprite(
+                            "Nanda",
+                            "default",
+                            ActorSprites.Position.BOTTOM_RIGHT
                     ),
-                    new SceneEventMoveActorSprite(
-                            "Juan",
-                            ActorSprites.Position.BOTTOM_CENTER_LEFT,
-                            0
+                    new SceneEventDialog(
+                            "Kamu kelihatan nggak fokus hari ini, bro. Apa ini soal tawaran dari Pak Rafi?",
+                            "Nanda"
                     ),
-                    new SceneEventSetActorSpriteExpression(
-                            "Clara",
-                            "smile"
+                    new SceneEventDialog(
+                            "Iya. Tawaran itu besar, tapi Clara mengirim pesan, dan itu memunculkan banyak kenangan lama.",
+                            "Juan"
                     ),
-                    new SceneEventSetActorSpriteExpression(
-                            "Juan",
-                            "smile2"
+                    new SceneEventDialog(
+                            "Kenangan itu bagus, Juan, tapi nggak bikin rekening bankmu penuh. Aku nggak bermaksud kasar, tapi hidup ini butuh keseimbangan. Dan kadang, prioritas itu harus jelas.",
+                            "Nanda"
+                    ),
+                    new SceneEventDialog(
+                            "Aku tahu. Tapi entah kenapa, aku merasa seperti kehilangan sesuatu kalau meninggalkan Clara.",
+                            "Juan"
+                    ),
+                    new SceneEventDialog(
+                            "Kalau itu benar-benar masalahnya, cari tahu apa yang lebih penting untukmu. Tapi ingat, kesempatan kayak tawaran ini nggak datang dua kali.",
+                            "Nanda"
+                    ),
+                    new SceneEventShowCoverTransition(),
+                    new SceneEventSwitchScene(
+                            "Home Thoughts of Decision"
                     )
             )
+        ));
+
+        scenes.add(new Scene(
+                "Home Thoughts of Decision",
+                Arrays.asList(
+                        new SceneEventSetBackground(
+                                "images/background/home.png"
+                        ),
+                        new SceneEventAddActorSprite(
+                                "Juan",
+                                "default",
+                                ActorSprites.Position.BOTTOM_LEFT
+                        ),
+                        new SceneEventAddActorSprite(
+                                "Ibu",
+                                "default",
+                                ActorSprites.Position.BOTTOM_RIGHT
+                        ),
+                        new SceneEventWait(1000),
+                        new SceneEventHideCoverTransition(),
+                        new SceneEventDialog(
+                                "Jadi, Nak, kau sudah membuat keputusan tentang tawaran itu?",
+                                "Ibu"
+                        )
+                )
+        ));
+
+        scenes.add(new Scene(
+                "Career or Love",
+                Arrays.asList(
+
+                )
+        ));
+
+        scenes.add(new Scene(
+                "Career Focus",
+                Arrays.asList(
+
+                )
+        ));
+
+        scenes.add(new Scene(
+                "Elena Love?",
+                Arrays.asList(
+
+                )
+        ));
+
+        scenes.add(new Scene(
+                "Still Elena Love?",
+                Arrays.asList(
+
+                )
         ));
 
 
