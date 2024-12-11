@@ -86,7 +86,7 @@ public class DefinedActors {
                       "Ibu",
                       Map.of(
                               "default", "images/actorsprite/ibu/default.png",
-                              "delighted1", "images/actorsprite/ibu/delighted.png",
+                              "delighted1", "images/actorsprite/ibu/delighted1.png",
                               "delighted2", "images/actorsprite/ibu/delighted2.png",
                               "smile1", "images/actorsprite/ibu/smile1.png",
                               "smile2", "images/actorsprite/ibu/smile2.png"
