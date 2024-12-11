@@ -4,10 +4,8 @@ import main.java.Configuration;
 import main.java.actor.Actor;
 
 import javax.swing.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ActorSprites {
@@ -185,5 +183,14 @@ public class ActorSprites {
         this.actorSpritesPanel.remove(sprites.get(actor));
         this.sprites.remove(actor);
         onFinish.run();
+    }
+
+    public void clear() {
+        Runnable _sink = () -> {};
+
+        ArrayList<Actor> presentActors = new ArrayList<>(sprites.keySet());
+        for (Actor actor : presentActors) {
+            removeActor(actor, _sink);
+        }
     }
 }

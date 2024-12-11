@@ -45,7 +45,6 @@ public class ScenePlayer {
         this.isPlaying = true;
 
         ScenePlayer scenePlayer = this;
-        List<SceneEvent> events = scenePlayer.scene.getEvents();
 
         Runnable nextEvent = new Runnable() {
             @Override
@@ -55,7 +54,7 @@ public class ScenePlayer {
                     return;
                 }
 
-                SceneEvent event = events.get(scenePlayer.currentEventIndex);
+                SceneEvent event = scenePlayer.scene.getEvents().get(scenePlayer.currentEventIndex);
                 scenePlayer.currentEventIndex++;
                 event.execute(
                         scenePlayer,

@@ -7,6 +7,7 @@ import main.java.visual.actorsprite.ActorSprites;
 import main.java.visual.background.Background;
 import main.java.visual.dialogbox.DialogBox;
 import main.java.visual.choicelist.ChoiceList;
+import main.java.visual.transition.CoverTransition;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,12 +22,14 @@ public class NovelWindow extends JFrame implements NovelWindowManipulate {
     private ActorSprites actorSprites;
     private DialogBox dialogBox;
     private ChoiceList choiceList;
+    private CoverTransition coverTransition;
 
     private JLayeredPane novelPane;
     private JPanel backgroundPanel;
     private JPanel actorSpritesPanel;
     private JPanel dialogBoxPanel;
     private JLayeredPane choiceListPane;
+    private JPanel transitionPanel;
   
 
     public NovelWindow() {
@@ -82,11 +85,19 @@ public class NovelWindow extends JFrame implements NovelWindowManipulate {
         this.choiceListPane.add(choiceListPanel, 1, 0);
         this.choiceListPane.setVisible(false);
 
+        // transition panel
+        this.transitionPanel = new JPanel();
+        this.transitionPanel.setBounds(0, 0, this.getWidth(), this.getHeight());
+        this.transitionPanel.setLayout(null);
+        this.transitionPanel.setOpaque(false);
+        this.transitionPanel.setVisible(true);
+
         // adding panels to novel pane
         this.novelPane.add(this.backgroundPanel, 0, 0);
         this.novelPane.add(this.actorSpritesPanel, 1, 0);
         this.novelPane.add(this.dialogBoxPanel, 2, 0);
         this.novelPane.add(this.choiceListPane, 3, 0);
+        this.novelPane.add(this.transitionPanel, 4, 0);
 
         this.background = new Background(this.backgroundPanel);
         this.actorSprites = new ActorSprites(this.actorSpritesPanel);
@@ -97,6 +108,7 @@ public class NovelWindow extends JFrame implements NovelWindowManipulate {
                 choiceListButtonMiddle,
                 choiceListButtonBottom
         );
+        this.coverTransition = new CoverTransition(transitionPanel);
 
         this.dialogBoxPanel.add(this.dialogBox.getDialogLayer());
 
@@ -111,8 +123,8 @@ public class NovelWindow extends JFrame implements NovelWindowManipulate {
      * @param speaker The actor speaking the dialogue.
      */
     @Override
-    public void dialogBoxTalk(String text, Actor speaker) {
-        this.dialogBox.talk(text, speaker);
+    public void dialogBoxTalk(String text, Actor speaker, Runnable onFinish) {
+        this.dialogBox.talk(text, speaker, onFinish);
     }
 
     /**
@@ -170,6 +182,26 @@ public class NovelWindow extends JFrame implements NovelWindowManipulate {
     @Override
     public void removeActorSprite(Actor actor, Runnable onFinish) {
         this.actorSprites.removeActor(actor, onFinish);
+    }
+
+    @Override
+    public void clearActorSprites() {
+        this.actorSprites.clear();
+    }
+
+    @Override
+    public void clearDialogueBox() {
+        this.dialogBox.clear();
+    }
+
+    @Override
+    public void showCoverTransition(Runnable onFinish) {
+        this.coverTransition.show(onFinish);
+    }
+
+    @Override
+    public void hideCoverTransition(Runnable onFinish) {
+        this.coverTransition.hide(onFinish);
     }
 
 /*

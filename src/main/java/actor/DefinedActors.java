@@ -110,7 +110,7 @@ public class DefinedActors {
       );
       actors.add(
               new Actor(
-                      "nanda",
+                      "Nanda",
                       Map.of(
                               "default", "images/actorsprite/nanda/default.png",
                               "shocked", "images/actorsprite/nanda/shocked.png",

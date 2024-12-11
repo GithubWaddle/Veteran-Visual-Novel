@@ -12,6 +12,15 @@ import java.awt.event.MouseEvent;
  * Manages the dialogue box in the visual novel.
  */
 public class DialogBox {
+    enum DialogState {
+        NOTHING,
+        DISPLAYING,
+        WAITING_TO_CONTINUE
+    }
+
+    private DialogState currentDialogState;
+    private Runnable onContinue;
+
     private JLabel speakerText;
     private JLabel speakerName;
     private JLayeredPane dialogLayer;
@@ -19,6 +28,8 @@ public class DialogBox {
     private String currentText;  // Current full text to be displayed
     private int currentCharIndex;  // Index of the current character being displayed
     private String currentSpeaker;
+
+
     public DialogBox() {
 
         dialogLayer = new JLayeredPane();
@@ -37,39 +48,45 @@ public class DialogBox {
         speakerBox.setBackground(new Color(128, 0, 0, 180));
 
         // Label for speaker name
-        speakerName = new JLabel();
-        speakerName.setFont(new Font("Comic Sans", Font.BOLD, 16));
-        speakerName.setForeground(Color.WHITE);
-        speakerName.setHorizontalAlignment(SwingConstants.CENTER);
-        speakerName.setBounds(0,0,200,30);
+        this.speakerName = new JLabel();
+        this.speakerName.setFont(new Font("Comic Sans", Font.BOLD, 16));
+        this.speakerName.setForeground(Color.WHITE);
+        this.speakerName.setHorizontalAlignment(SwingConstants.CENTER);
+        this.speakerName.setBounds(0,0,200,30);
         // Label for dialog text
-        speakerText = new JLabel();
-        speakerText.setBounds(10, 10, 780, 130);
-        speakerText.setFont(new Font("Comic Sans", Font.PLAIN, 16));
-        speakerText.setForeground(Color.WHITE);
-        speakerText.setVerticalAlignment(SwingConstants.TOP);
-        speakerText.setHorizontalAlignment(SwingConstants.LEFT);
-        speakerText.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        this.speakerText = new JLabel();
+        this.speakerText.setBounds(10, 10, 780, 130);
+        this.speakerText.setFont(new Font("Comic Sans", Font.PLAIN, 16));
+        this.speakerText.setForeground(Color.WHITE);
+        this.speakerText.setVerticalAlignment(SwingConstants.TOP);
+        this.speakerText.setHorizontalAlignment(SwingConstants.LEFT);
+        this.speakerText.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        // Add a mouse listener to the speakerText to skip the animation
-        speakerText.addMouseListener(new MouseAdapter() {
+        // Add a mouse listener to the speakerText to skip the animation and continue to next event
+        this.speakerText.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // Skip the text animation by stopping the timer and showing the full text
-
-                if (timer != null && timer.isRunning()) {
-                    timer.stop();
+                switch (currentDialogState) {
+                    case DialogState.DISPLAYING -> {
+                        timer.stop();
+                        System.out.println("Text Skipped");
+                        speakerText.setText("<html>" + currentText.replace("\n", "<br>") + "</html>");
+                        currentDialogState = DialogState.WAITING_TO_CONTINUE;
+                    }
+                    case DialogState.WAITING_TO_CONTINUE -> {
+                        currentDialogState = DialogState.NOTHING;
+                        onContinue.run();
+                    }
                 }
-                System.out.println("Text Skipped");
-                speakerText.setText("<html>" + currentText.replace("\n", "<br>") + "</html>");
             }
         });
 
         speakerBox.add(speakerName);
         dialogBox.add(speakerText);
 
-        dialogLayer.add(speakerBox, Integer.valueOf(1));
-        dialogLayer.add(dialogBox, Integer.valueOf(1));
+        this.dialogLayer.add(speakerBox, Integer.valueOf(1));
+        this.dialogLayer.add(dialogBox, Integer.valueOf(1));
     }
 
     public JLayeredPane getDialogLayer() {
@@ -82,38 +99,45 @@ public class DialogBox {
      * @param text    The dialogue text.
      * @param speaker The actor speaking the dialogue.
      */
-    public void talk(String text, Actor speaker) {
+    public void talk(String text, Actor speaker, Runnable onContinue) {
+        this.currentDialogState = DialogState.DISPLAYING;
+        this.onContinue = onContinue;
+
         // Update current speaker and text
-        currentText = text;
-        currentCharIndex = 0;
-        if(speaker!=null) {
-            currentSpeaker = speaker.name; // Set current speaker's name
-        }else{
-            currentSpeaker = "Narrator";
+        this.currentText = text;
+        this.currentCharIndex = 0;
+        if(speaker != null) {
+            this.currentSpeaker = speaker.name; // Set current speaker's name
+        }
+        else
+        {
+            this.currentSpeaker = "Narrator";
         }
         // Update UI
-        speakerName.setText(currentSpeaker);
+        this.speakerName.setText(this.currentSpeaker);
 
         // Stop the timer if it's already running
-
-        if (timer != null && timer.isRunning()) {
-            timer.stop();
+        if (this.timer != null && this.timer.isRunning()) {
+            this.timer.stop();
         }
 
         // Typing effect using a Timer
-        timer = new Timer(35, e -> {
-            if (currentCharIndex < currentText.length()) {
-                String formattedText = "<html>" + currentText.substring(0, currentCharIndex + 1).replace("\n", "<br>") + "</html>";
-                speakerText.setText(formattedText);
-                currentCharIndex++;
+        this.timer = new Timer(35, e -> {
+            if (this.currentCharIndex < this.currentText.length()) {
+                String formattedText = "<html>" + this.currentText.substring(0, this.currentCharIndex + 1).replace("\n", "<br>") + "</html>";
+                this.speakerText.setText(formattedText);
+                this.currentCharIndex++;
             } else {
-                timer.stop(); // Stop the timer when the text is fully displayed
-
+                this.timer.stop(); // Stop the timer when the text is fully displayed
+                this.currentDialogState = DialogState.WAITING_TO_CONTINUE;
             }
         });
 
-        timer.start(); // Start the animation
+        this.timer.start(); // Start the animation
+    }
 
-
+    public void clear() {
+        this.speakerName.setText("");
+        this.speakerText.setText("");
     }
 }

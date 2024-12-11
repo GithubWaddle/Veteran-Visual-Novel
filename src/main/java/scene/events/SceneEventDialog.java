@@ -1,6 +1,7 @@
 package main.java.scene.events;
 
 import main.java.actor.Actor;
+import main.java.actor.DefinedActors;
 import main.java.scene.ScenePlayer;
 import main.java.visual.NovelWindow;
 
@@ -14,6 +15,10 @@ public class SceneEventDialog extends SceneEvent {
         this.text = text;
         this.speaker = speaker;
     }
+    public SceneEventDialog(String text, String speakerName) {
+        this.text = text;
+        this.speaker = DefinedActors.getActorByName(speakerName);
+    }
 
     public SceneEventDialog(String text) {
         this.text = text;
@@ -21,24 +26,10 @@ public class SceneEventDialog extends SceneEvent {
 
     @Override
     public void execute(ScenePlayer scenePlayer, NovelWindow novelWindow, Runnable onFinish) {
-        if (this.speaker != null) {
-            System.out.println(
-                    this.speaker.name + ": " + this.text
-            );
-        }
-        else {
-            System.out.println(
-                    this.text
-            );
-        }
-
-        try {
-            System.out.print("Press Enter to Continue: ");
-            System.in.read();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        onFinish.run();
+        novelWindow.dialogBoxTalk(
+                this.text,
+                this.speaker,
+                onFinish
+        );
     }
 }

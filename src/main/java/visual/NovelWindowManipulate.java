@@ -6,7 +6,7 @@ import main.java.visual.actorsprite.ActorSprites;
 import java.util.ArrayList;
 
 public interface NovelWindowManipulate {
-    void dialogBoxTalk(String text, Actor speaker);
+    void dialogBoxTalk(String text, Actor speaker, Runnable onFinish);
     void choiceListAsk(ArrayList<String> choices, Runnable onChoicePicked);
     String getChoicePicked();
     void setBackground(String imagePath, Runnable onComplete);
@@ -14,4 +14,8 @@ public interface NovelWindowManipulate {
     void setActorSpriteExpression(Actor actor, String expression, Runnable onComplete);
     void moveActorSprite(Actor actor, ActorSprites.Position position, int durationMilliseconds, Runnable onComplete);
     void removeActorSprite(Actor actor, Runnable onComplete);
+    void clearActorSprites();
+    void clearDialogueBox();
+    void showCoverTransition(Runnable onFinish);
+    void hideCoverTransition(Runnable onFinish);
 }
