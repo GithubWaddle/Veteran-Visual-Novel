@@ -14,18 +14,45 @@ public class DefinedScenes {
 
     // Inisialisasi scene yang tersedia
     static {
+        // REAL
         scenes.add(new Scene(
             "intro",
             Arrays.asList(
-                    new SceneEventDialog(
-                            "Welcome to the Veteran Visual Novel!"
+                    new SceneEventAddActorSprite(
+                            "Clara",
+                            "default",
+                            ActorSprites.Position.BOTTOM_RIGHT
                     ),
-                    new SceneEventDialog(
-                            "Click to continue to the next scene."
+                    new SceneEventAddActorSprite(
+                            "Juan",
+                            "default",
+                            ActorSprites.Position.BOTTOM_LEFT
+                    ),
+                    new SceneEventWait(2000),
+                    new SceneEventMoveActorSprite(
+                            "Clara",
+                            ActorSprites.Position.BOTTOM_CENTER_RIGHT,
+                            0
+                    ),
+                    new SceneEventMoveActorSprite(
+                            "Juan",
+                            ActorSprites.Position.BOTTOM_CENTER_LEFT,
+                            0
+                    ),
+                    new SceneEventSetActorSpriteExpression(
+                            "Clara",
+                            "smile"
+                    ),
+                    new SceneEventSetActorSpriteExpression(
+                            "Juan",
+                            "smile2"
                     )
             )
         ));
 
+
+
+        // TEST
         scenes.add(new Scene(
             "testScene",
             Arrays.asList(

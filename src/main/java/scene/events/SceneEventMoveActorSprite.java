@@ -1,6 +1,7 @@
 package main.java.scene.events;
 
 import main.java.actor.Actor;
+import main.java.actor.DefinedActors;
 import main.java.scene.ScenePlayer;
 import main.java.visual.NovelWindow;
 import main.java.visual.actorsprite.ActorSprites;
@@ -12,6 +13,11 @@ public class SceneEventMoveActorSprite extends SceneEvent {
 
     public SceneEventMoveActorSprite(Actor actor, ActorSprites.Position position, int durationMilliseconds) {
         this.actor = actor;
+        this.position = position;
+        this.durationMilliseconds = durationMilliseconds;
+    }
+    public SceneEventMoveActorSprite(String actorName, ActorSprites.Position position, int durationMilliseconds) {
+        this.actor = DefinedActors.getActorByName(actorName);
         this.position = position;
         this.durationMilliseconds = durationMilliseconds;
     }
